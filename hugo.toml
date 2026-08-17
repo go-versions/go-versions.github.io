@@ -1,0 +1,27 @@
+baseURL = "https://go-versions.github.io/"
+title = "go-versions"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  subtitle = "pkgx's version scheme, faithfully, in Go"
+  description = "A faithful Go port of pkgx's version scheme (libpkgx's), for the many almost-valid versions that node-semver and the Go semver libraries reject. The parsing and comparison implementation for the go-pkgx family."
+  tagline = "The version scheme real packages actually use — a faithful Go port of <a href=\"https://pkgx.sh\">pkgx</a>'s, for the versions strict semver rejects."
+  pills = ["libpkgx-faithful", "openssl-style versions", "CGO_ENABLED=0", "BSD-3-Clause"]
+  primary_role = "parser"
+  secondary_url = "https://pkg.go.dev/github.com/go-versions/semver"
+  secondary_label = "Go reference"
+  leads = [
+    "The real world ships many <strong>“almost valid”</strong> versions — <code>1.1.1w</code> and its kin — that node-semver and the Go semver libraries simply refuse. A package manager cannot refuse them back, so it needs a scheme that accepts what upstreams actually publish.",
+    "This is that scheme, ported faithfully rather than approximated, and it is the parsing and comparison implementation behind the <a href=\"https://github.com/go-pkgx\">go-pkgx</a> family."
+  ]
+  principles = "Faithful means tested against the reference behaviour, not merely inspired by it — the point of a port is that it agrees with the original on the awkward inputs, which are the only ones that matter here."
+
+[[params.repos]]
+  name = "semver"
+  role = "parser"
+  reach = "ParseVersion / comparison, libpkgx semantics"
+  gomod = true
+  result = "<code>semver.ParseVersion(\"1.1.1w\")</code> — openssl-style and the rest of what pkgx accepts, with the same ordering."
