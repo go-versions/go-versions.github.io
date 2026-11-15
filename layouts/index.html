@@ -42,10 +42,8 @@
     <div>
       <h1 class="head">{{ .Site.Title }}</h1>
       <p class="sub">{{ .Site.Params.tagline | safeHTML }}</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="https://github.com/{{ .Site.Title }}">{{ partial "icons/github.html" . }}GitHub</a>
-        <a class="btn btn-ghost" href="{{ . }}">{{ partial "icons/book.html" . }}{{ $.Site.Params.secondary_label }}</a>
-      </div>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
       <div class="trust">{{ range .Site.Params.pills }}<span class="pill">{{ . }}</span>{{ end }}</div>
     </div>
     {{ partial "hero-carousel.html" . }}
@@ -75,7 +73,7 @@
         <div class="badges">
           {{ if not .no_ci }}<a href="https://github.com/{{ $.Site.Title }}/{{ .name }}/actions/workflows/ci.yml"><img src="https://github.com/{{ $.Site.Title }}/{{ .name }}/actions/workflows/ci.yml/badge.svg" alt="CI"></a>{{ end }}
           {{ if .gomod }}<a href="https://pkg.go.dev/github.com/{{ $.Site.Title }}/{{ .name }}"><img src="https://pkg.go.dev/badge/github.com/{{ $.Site.Title }}/{{ .name }}.svg" alt="Go reference"></a>{{ end }}
-          {{ if not (partial "mantra-on.html" $) }}<img src="https://img.shields.io/badge/license-BSD--3--Clause-blue.svg" alt="BSD-3-Clause">{{ end }}
+          {{ if not (partial "mantra-on.html" $) }}{{ if not (partial "mantra-on.html" $) }}<img src="https://img.shields.io/badge/license-BSD--3--Clause-blue.svg" alt="BSD-3-Clause">{{ end }}{{ end }}
         </div>
       </article>
       {{ end }}
